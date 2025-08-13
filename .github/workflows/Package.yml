@@ -125,13 +125,6 @@ jobs:
 
       #
 
-      - name: Setup flutter
-        if: steps.check_asset.outputs.skip_build != 'true'
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
-          architecture: x64
-
       - name: Check core
         if: steps.check_asset.outputs.skip_build != 'true'
         uses: actions/checkout@v3
@@ -139,6 +132,13 @@ jobs:
           repository: 'niuhuan/pikapika-go-core'
           token: ${{ secrets.CORE_TOKEN }}
           path: 'go'
+
+      - name: Setup flutter
+        if: steps.check_asset.outputs.skip_build != 'true'
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          architecture: x64
 
       - name: Cache Flutter dependencies (Linux/Android)
         if: steps.check_asset.outputs.skip_build != 'true' && ( matrix.config.target == 'android-arm32' || matrix.config.target == 'android-arm64' || matrix.config.target == 'android-x86_64' || matrix.config.target == 'linux' )

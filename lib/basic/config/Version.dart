@@ -9,8 +9,9 @@ import '../Method.dart';
 import 'IgnoreUpgradeConfirm.dart';
 import 'IsPro.dart';
 
+const repoOwnerUrl = "https://api.github.com/repos/ComicSparks/glxx/releases/tags/pikapika";
 const _versionUrl =
-    "https://api.github.com/repos/ComicSparks/pikapika/releases/latest";
+    "https://api.github.com/repos/OWNER/pikapika/releases/latest";
 const _versionAssets = 'lib/assets/version.txt';
 
 late String _version;
@@ -41,9 +42,9 @@ String? latestVersionInfo() {
 }
 
 Future autoCheckNewVersion() {
-  if (!isPro) {
-    return Future.value();
-  }
+  // if (!isPro) {
+  //   return Future.value();
+  // }
   return _versionCheck();
 }
 
@@ -65,7 +66,8 @@ bool dirtyVersion() {
 Future _versionCheck() async {
   if (!dirtyVersion()) {
     // 检查更新只能使用defaultHttpClient, 而不能使用pika的client, 否则会 "tls handshake failure"
-    var json = jsonDecode(await method.defaultHttpClientGet(_versionUrl));
+    var owner = jsonDecode(await method.defaultHttpClientGet(repoOwnerUrl))["body"].toString().trim();
+    var json = jsonDecode(await method.defaultHttpClientGet(_versionUrl.replaceAll("OWNER", owner)));
     if (json["name"] != null) {
       String latestVersion = (json["name"]);
       if (latestVersion != _version) {

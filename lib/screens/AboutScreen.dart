@@ -64,17 +64,19 @@ class _AboutScreenState extends State<AboutScreen> {
             width: min / 2,
             height: min / 2,
             child: Center(
-              child: isPro
-                  ? SvgPicture.asset(
+              child:
+              //  isPro ?
+                   SvgPicture.asset(
                       'lib/assets/github.svg',
                       width: min / 3,
                       height: min / 3,
                       color: Colors.grey.shade500,
                     )
-                  : SizedBox(
-                      width: min / 3,
-                      height: min / 3,
-                    ),
+                  // : SizedBox(
+                  //     width: min / 3,
+                  //     height: min / 3,
+                  //   )
+                    ,
             ),
           ),
           Container(height: 20),
@@ -121,13 +123,13 @@ class _AboutScreenState extends State<AboutScreen> {
   }
 
   List<InlineSpan> _buildNewVersion(String? latestVersion) {
-    if (!isPro) {
-      return [
-        TextSpan(
-          text: tr("screen.about.download_new_version"),
-        )
-      ];
-    }
+    // if (!isPro) {
+    //   return [
+    //     TextSpan(
+    //       text: tr("screen.about.download_new_version"),
+    //     )
+    //   ];
+    // }
     if (latestVersion != null) {
       return [
         WidgetSpan(
@@ -194,9 +196,9 @@ class _AboutScreenState extends State<AboutScreen> {
   }
 
   Widget _buildNewVersionInfo(String? latestVersionInfo) {
-    if (!isPro) {
-      return const Text("");
-    }
+    // if (!isPro) {
+    //   return const Text("");
+    // }
     if (latestVersionInfo != null) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
