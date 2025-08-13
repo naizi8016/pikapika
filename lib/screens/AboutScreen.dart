@@ -156,7 +156,7 @@ class _AboutScreenState extends State<AboutScreen> {
             color: Theme.of(context).colorScheme.primary,
           ),
           recognizer: TapGestureRecognizer()
-            ..onTap = _openRelease(),
+            ..onTap = _openRelease,
         ),
       ];
     }
