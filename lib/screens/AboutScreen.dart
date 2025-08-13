@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:pikapika/i18.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -6,11 +8,13 @@ import 'package:pikapika/basic/Cross.dart';
 import 'package:pikapika/basic/config/Version.dart';
 import 'package:pikapika/screens/components/Badge.dart';
 
+import '../basic/Method.dart';
 import '../basic/config/IsPro.dart';
 import 'components/ListView.dart';
 import 'components/RightClickPop.dart';
 
-const _releasesUrl = "https://github.com/ComicSparks/pikapika/releases";
+const repoOwnerUrl = "https://api.github.com/repos/ComicSparks/glxx/releases/tags/pikapika";
+const _releasesUrl = "https://github.com/OWNER/pikapika/releases";
 
 // 关于
 class AboutScreen extends StatefulWidget {
@@ -152,7 +156,7 @@ class _AboutScreenState extends State<AboutScreen> {
             color: Theme.of(context).colorScheme.primary,
           ),
           recognizer: TapGestureRecognizer()
-            ..onTap = () => openUrl(_releasesUrl),
+            ..onTap = _openRelease(),
         ),
       ];
     }
@@ -190,9 +194,14 @@ class _AboutScreenState extends State<AboutScreen> {
           height: 1.3,
           color: Theme.of(context).colorScheme.primary,
         ),
-        recognizer: TapGestureRecognizer()..onTap = () => openUrl(_releasesUrl),
+        recognizer: TapGestureRecognizer()..onTap = _openRelease,
       )
     ];
+  }
+
+  Future _openRelease() async {
+    var owner = jsonDecode(await method.defaultHttpClientGet(repoOwnerUrl))["body"].toString().trim();
+    openUrl(_releasesUrl.replaceAll("OWNER", owner));
   }
 
   Widget _buildNewVersionInfo(String? latestVersionInfo) {
@@ -229,7 +238,7 @@ class _AboutScreenState extends State<AboutScreen> {
                 color: Theme.of(context).colorScheme.primary,
               ),
               recognizer: TapGestureRecognizer()
-                ..onTap = () => openUrl(_releasesUrl),
+                ..onTap = _openRelease,
             ),
           ),
         ),
