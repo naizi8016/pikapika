@@ -69,7 +69,7 @@ jobs:
             flutter_version: '2.10.3'
             go_version: '1.17'
           - target: macos
-            host: macos-latest
+            host: macos-14
             flutter_version: '2.10.3'
             go_version: '1.17'
           - target: linux
@@ -77,7 +77,7 @@ jobs:
             flutter_version: '2.10.3'
             go_version: '1.17'
           - target: ios
-            host: macos-latest
+            host: macos-14
             flutter_version: '3.13.9'
             go_version: '1.23'
           - target: android-arm32
@@ -137,7 +137,7 @@ jobs:
             ${{ matrix.config.host }}-go-
 
       - name: Cache go modules (macOS)
-        if: matrix.config.host == 'macos-latest'
+        if: startsWith(matrix.config.host, 'macos-')
         uses: actions/cache@v3
         with:
           path: |
