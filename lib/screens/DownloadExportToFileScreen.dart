@@ -117,6 +117,8 @@ class _DownloadExportToFileScreenState
               Container(height: 10),
               _exportToHtmlPdfFolderButton(),
               Container(height: 10),
+              _exportToHtmlEpubButton(),
+              Container(height: 10),
               _exportToJPEGSZIPButton(),
               Container(height: 10),
               _exportToHtmlJPEGNotDownOverButton(),
@@ -413,6 +415,60 @@ class _DownloadExportToFileScreenState
     );
   }
 
+  Widget _exportToHtmlEpubButton() {
+    return MaterialButton(
+      onPressed: () async {
+        if (!isPro) {
+          defaultToast(context, tr("screen.download_export_group.please_power_up"));
+          return;
+        }
+        var name = "";
+        if (currentExportRename()) {
+          var rename = await inputString(
+            context,
+            tr("screen.download_export_to_file.input_save_name"),
+            defaultValue: _task.title,
+          );
+          if (rename != null && rename.isNotEmpty) {
+            name = rename;
+          } else {
+            return;
+          }
+        } else {
+          if (!await confirmDialog(
+              context,
+              tr('screen.download_export_to_file.export_confirm'),
+              tr('screen.download_export_to_file.export_to_epub_title') + showExportPath(),
+          )) {
+            return;
+          }
+        }
+        try {
+          setState(() {
+            exporting = true;
+          });
+          await method.exportComicDownloadToEpub(
+            widget.comicId,
+            await attachExportPath(),
+            name,
+          );
+          setState(() {
+            exportResult = tr("screen.download_export_group.export_success");
+          });
+        } catch (e) {
+          setState(() {
+            exportResult = tr("screen.download_export_group.export_failed") + " $e";
+          });
+        } finally {
+          setState(() {
+            exporting = false;
+          });
+        }
+      },
+      child: _buildButtonInner(tr("screen.download_export_group.export_to_epub_title") + showExportPath()),
+    );
+  }
+
   Widget _exportToHtmlPdfFolderButton() {
     return MaterialButton(
       onPressed: () async {
@@ -546,7 +602,7 @@ class _DownloadExportToFileScreenState
           if (!await confirmDialog(
               context,
               tr('screen.download_export_to_file.export_confirm'),
-              tr('screen.download_export_group.export_to_jpeg_zip_title') + showExportPath(),
+              tr('screen.download_export_group.export_to_jpeg_zip_title_not_down_over') + showExportPath(),
           )) {
             return;
           }
@@ -574,7 +630,7 @@ class _DownloadExportToFileScreenState
         }
       },
       child: _buildButtonInner(
-        tr("screen.download_export_group.export_to_jpeg_zip_title") + (!isPro ? "\n(${tr('app.pro')})" : ""),
+        tr("screen.download_export_group.export_to_jpeg_zip_title_not_down_over") + (!isPro ? "\n(${tr('app.pro')})" : ""),
       ),
     );
   }

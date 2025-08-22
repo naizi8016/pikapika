@@ -110,6 +110,14 @@ class _DownloadExportingGroupScreenState
         ),
         Container(height: 20),
         MaterialButton(
+          onPressed: _exportToEpub,
+          child: _buildButtonInner(
+            tr("screen.download_export_group.export_to_epub") +
+                (!isPro ? "\n" + tr("screen.download_export_group.after_power_use") : ""),
+          ),
+        ),
+        Container(height: 20),
+        MaterialButton(
           onPressed: _exportComicDownloadToCbzsZip,
           child: _buildButtonInner(
             tr("screen.download_export_group.export_to_cbz") +
@@ -304,6 +312,40 @@ class _DownloadExportingGroupScreenState
       final path = await attachExportPath();
       for (var id in widget.idList) {
         await method.exportComicDownloadToPDF(
+          id,
+          path,
+          "",
+        );
+      }
+      exported = true;
+    } catch (err) {
+      e = err;
+      exportFail = true;
+    } finally {
+      setState(() {
+        exporting = false;
+      });
+    }
+  }
+
+  _exportToEpub() async {
+    if (!isPro) {
+      defaultToast(context, tr("screen.download_export_group.please_power_up"));
+      return;
+    }
+    if (!await confirmDialog(
+        context,
+        tr("screen.download_export_group.export_confirm"),
+        tr("screen.download_export_group.export_to_epub_title") + showExportPath())) {
+      return;
+    }
+    try {
+      setState(() {
+        exporting = true;
+      });
+      final path = await attachExportPath();
+      for (var id in widget.idList) {
+        await method.exportComicDownloadToEpub(
           id,
           path,
           "",

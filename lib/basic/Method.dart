@@ -630,6 +630,19 @@ class Method {
     });
   }
 
+  /// 导出下载的图片到HTML+JPG
+  Future<dynamic> exportComicDownloadToEpub(
+    String comicId,
+    String dir,
+    String name,
+  ) {
+    return _flatInvoke("exportComicDownloadToEpub", {
+      "comicId": comicId,
+      "dir": dir,
+      "name": name,
+    });
+  }
+
   /// 导出下载的图片到PDF文件夹
   Future<dynamic> exportComicDownloadToPDFFolder(
     String comicId,
