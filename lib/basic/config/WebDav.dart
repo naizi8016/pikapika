@@ -47,6 +47,7 @@ Future syncWebDavIfAuto(BuildContext context) async {
         _webdavUsername,
         _webdavPassword,
         "pk.histories",
+        "all",
       );
     } catch (e, s) {
       print("$e\n$s");
@@ -62,6 +63,23 @@ Future syncHistoryToWebdav(BuildContext context) async {
       _webdavUsername,
       _webdavPassword,
       "pk.histories",
+      "all",
+    );
+    defaultToast(context, tr("settings.webdav.sync_success"));
+  } catch (e, s) {
+    print("$e\n$s");
+    defaultToast(context, tr("settings.webdav.sync_failed"));
+  }
+}
+
+Future uploadHistoryToWebdav(BuildContext context) async {
+  try {
+    await method.mergeHistoriesFromWebDav(
+      _webdavRoot,
+      _webdavUsername,
+      _webdavPassword,
+      "pk.histories",
+      "up",
     );
     defaultToast(context, tr("settings.webdav.sync_success"));
   } catch (e, s) {
@@ -149,7 +167,8 @@ List<Widget> webDavSettings(BuildContext context) {
       builder: (BuildContext context, void Function(void Function()) setState) {
         return ListTile(
           title: Text(
-            tr("settings.webdav.auto_sync_history_to_webdav") + (isPro ? "" : "(${tr("app.pro")})"),
+            tr("settings.webdav.auto_sync_history_to_webdav") +
+                (isPro ? "" : "(${tr("app.pro")})"),
             style: TextStyle(
               color: !isPro ? Colors.grey : null,
             ),
@@ -165,7 +184,9 @@ List<Widget> webDavSettings(BuildContext context) {
               return;
             }
             String? result = await chooseListDialog<String>(
-                context, tr("settings.webdav.auto_sync_history_to_webdav"), [tr("app.yes"), tr("app.no")]);
+                context,
+                tr("settings.webdav.auto_sync_history_to_webdav"),
+                [tr("app.yes"), tr("app.no")]);
             if (result != null) {
               var target = result == tr("app.yes");
               await method.saveProperty(
@@ -182,6 +203,13 @@ List<Widget> webDavSettings(BuildContext context) {
         title: Text(tr("settings.webdav.sync_history_to_webdav")),
         onTap: () async {
           await syncHistoryToWebdav(context);
+        }),
+    //
+    ListTile(
+        title: Text(tr("settings.webdav.upload_history_to_webdav")),
+        subtitle: Text(tr("settings.webdav.upload_history_to_webdav_desc")),
+        onTap: () async {
+          await uploadHistoryToWebdav(context);
         }),
   ];
 }

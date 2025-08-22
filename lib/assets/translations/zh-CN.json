@@ -229,6 +229,9 @@
     "hidden_search_persion": {
       "title": "隐藏按作者搜索功能"
     },
+    "hidden_viewed": {
+      "title": "隐藏阅读过的漫画"
+    },
     "hidden_sub_icon": {
       "title": "隐藏订阅功能"
     },
@@ -407,6 +410,8 @@
       "password_hint": "请输入WebDav 密码",
       "auto_sync_history_to_webdav": "开启时自动同步浏览记录到WebDav",
       "sync_history_to_webdav": "立即同步浏览记录到WebDAV",
+      "upload_history_to_webdav": "覆盖WebDAV中的浏览记录",
+      "upload_history_to_webdav_desc": "如有多台设备，请注意自动同步功能",
       "sync_success": "同步成功",
       "sync_failed": "同步失败"
     }    
@@ -592,6 +597,7 @@
       "paused": "暂停中",
       "move_download": "移动下载",
       "select_download_to_move": "请选择要移动下载",
+      "select_download_to_delete": "请选择要删除下载",
       "input_name": "==> 输入名称 <==",
       "empty_folder_will_be_deleted": "（空文件夹将会自动删除，下次需要手动输入）",
       "folder_name": "文件夹名称",
@@ -791,6 +797,8 @@
       "clear_all_desc": "将会同时删除浏览进度!",
       "clear_one": "您要清除这条浏览记录吗? ",
       "clear_one_desc": "将会同时删除浏览进度!",
+      "clear_selected": "您要清除选中的浏览记录吗? ",
+      "clear_selected_desc": "将会同时删除浏览进度!",
       "categories": "分类"
     },
     "web_server": {

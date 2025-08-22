@@ -68,7 +68,14 @@ class _ViewLogsScreenState extends State<ViewLogsScreen> {
 
   Future _viewSelected() async {
       if (_selectedList.isNotEmpty) {
-        await method.viewComic(_selectedList.join(','));
+        var confirm = await confirmDialog(
+          context,
+      tr('screen.view_logs.clear_selected'),
+      tr('screen.view_logs.clear_selected_desc'),
+        );
+        if (confirm == null || !confirm) {
+          return;
+        }
       }
       setState(() {
         _inSelection = false;

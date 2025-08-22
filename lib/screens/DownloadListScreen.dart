@@ -30,6 +30,7 @@ class _DownloadListScreenState extends State<DownloadListScreen> {
   String _search = "";
   bool _selecting = false;
   List<String> _selectingList = [];
+  List<String> _selectable = [];
   String _filterCustomFolder = "";
   List<String> _folderList = [];
 
@@ -64,6 +65,7 @@ class _DownloadListScreenState extends State<DownloadListScreen> {
             _selectingCancelButton(),
             _selectingMoveButton(),
             _selectingDeleteButton(),
+            _selectAllButton(),
           ],
         );
       }
@@ -112,6 +114,7 @@ class _DownloadListScreenState extends State<DownloadListScreen> {
     setState(() {
       _selecting = false;
       _selectingList = [];
+      _selectable = value.map((e) => e.id).toList();
     });
     return value;
   });
@@ -149,6 +152,26 @@ class _DownloadListScreenState extends State<DownloadListScreen> {
   void dispose() {
     unregisterEvent(_onMessageChange);
     super.dispose();
+  }
+
+  Widget _selectAllButton() {
+    return IconButton(
+      icon: const Icon(
+        Icons.select_all,
+        size: 18,
+        color: Colors.white,
+      ),
+      onPressed: () async {
+        setState(() {
+          if (_selectingList.length >= _selectable.length) {
+            _selectingList.clear();
+          } else {
+            _selectingList.clear();
+            _selectingList.addAll(_selectable);
+          }
+        });
+      },
+    );
   }
 
   @override
@@ -418,7 +441,9 @@ class _DownloadListScreenState extends State<DownloadListScreen> {
         return AlertDialog(
           title: Text(tr('screen.download_list.download_task')),
           content: Text(
-            _downloadRunning ? tr('screen.download_list.pause_download') : tr('screen.download_list.start_download'),
+            _downloadRunning
+                ? tr('screen.download_list.pause_download')
+                : tr('screen.download_list.start_download'),
           ),
           actions: [
             MaterialButton(
@@ -451,10 +476,12 @@ class _DownloadListScreenState extends State<DownloadListScreen> {
                 value: 0,
                 child: ListTile(
                   leading: const Icon(Icons.compare_arrows_sharp),
-                  title: Text(_downloadRunning ? tr('screen.download_list.pause_download') : tr('screen.download_list.start_download')),
+                  title: Text(_downloadRunning
+                      ? tr('screen.download_list.pause_download')
+                      : tr('screen.download_list.start_download')),
                 ),
               ),
-               PopupMenuItem<int>(
+              PopupMenuItem<int>(
                 value: 1,
                 child: ListTile(
                   leading: const Icon(Icons.sync_problem),
@@ -469,7 +496,8 @@ class _DownloadListScreenState extends State<DownloadListScreen> {
             await method.resetFailed();
             _reloadList();
             setState(() {});
-            defaultToast(context, tr('screen.download_list.resume_failed_desc'));
+            defaultToast(
+                context, tr('screen.download_list.resume_failed_desc'));
           }
         },
         child: Column(
@@ -483,7 +511,9 @@ class _DownloadListScreenState extends State<DownloadListScreen> {
               color: Colors.white,
             ),
             Text(
-              _downloadRunning ? tr('screen.download_list.downloading') : tr('screen.download_list.paused'),
+              _downloadRunning
+                  ? tr('screen.download_list.downloading')
+                  : tr('screen.download_list.paused'),
               style: const TextStyle(fontSize: 14, color: Colors.white),
             ),
             Expanded(child: Container()),
@@ -528,12 +558,17 @@ class _DownloadListScreenState extends State<DownloadListScreen> {
         _selectingList = [];
         setState(() {});
         if (tmp.isEmpty) {
-          defaultToast(context, tr('screen.download_list.select_download_to_move'));
+          defaultToast(
+              context, tr('screen.download_list.select_download_to_move'));
         } else {
           var moveToChoose = await chooseListDialog(
             context,
             tr('screen.download_list.move_download'),
-            [tr('app.all'), ..._folderList, tr('screen.download_list.input_name')],
+            [
+              tr('app.all'),
+              ..._folderList,
+              tr('screen.download_list.input_name')
+            ],
             tips: tr('screen.download_list.empty_folder_will_be_deleted'),
           );
           if (moveToChoose == null) {
@@ -541,9 +576,11 @@ class _DownloadListScreenState extends State<DownloadListScreen> {
           }
           if (moveToChoose == tr('screen.download_list.input_name')) {
             String? name = await displayTextInputDialog(context,
-                title: tr('screen.download_list.folder_name'), hint: tr('screen.download_list.please_input_folder_name'));
+                title: tr('screen.download_list.folder_name'),
+                hint: tr('screen.download_list.please_input_folder_name'));
             if (name != null) {
-              if (tr('app.all') != name && tr('screen.download_list.input_name') != name) {
+              if (tr('app.all') != name &&
+                  tr('screen.download_list.input_name') != name) {
                 await method.moveDownloadComic(tmp, name);
                 _reloadList();
                 setState(() {});
@@ -572,9 +609,13 @@ class _DownloadListScreenState extends State<DownloadListScreen> {
         _selectingList = [];
         setState(() {});
         if (tmp.isEmpty) {
-          defaultToast(context, tr('screen.download_list.select_download_to_delete'));
+          defaultToast(
+              context, tr('screen.download_list.select_download_to_delete'));
         } else {
-          if (await confirmDialog(context, tr('screen.download_list.delete_download'), tr('screen.download_list.delete_selected_download'))) {
+          if (await confirmDialog(
+              context,
+              tr('screen.download_list.delete_download'),
+              tr('screen.download_list.delete_selected_download'))) {
             for (var id in tmp) {
               await method.deleteDownloadComic(id);
             }

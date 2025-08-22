@@ -229,6 +229,9 @@
     "hidden_search_persion": {
       "title": "隱藏按作者搜索功能"
     },
+    "hidden_viewed": {
+      "title": "隱藏閱讀過的漫畫"
+    },
     "hidden_sub_icon": {
       "title": "隱藏訂閱功能"
     },
@@ -407,6 +410,8 @@
       "password_hint": "請輸入WebDav 密碼",
       "auto_sync_history_to_webdav": "開啟時自動同步瀏覽記錄到WebDav",
       "sync_history_to_webdav": "立即同步瀏覽記錄到WebDAV",
+      "upload_history_to_webdav": "覆蓋WebDAV中的瀏覽記錄",
+      "upload_history_to_webdav_desc": "如有多台設備，請注意自動同步功能",
       "sync_success": "同步成功",
       "sync_failed": "同步失敗"
     }
@@ -592,6 +597,7 @@
       "paused": "暫停中",
       "move_download": "移動下載",
       "select_download_to_move": "請選擇要移動的下載",
+      "select_download_to_delete": "請選擇要刪除的下載",
       "input_name": "==> 輸入名稱 <==",
       "empty_folder_will_be_deleted": "（空文件夾將會自動刪除，下次需要手動輸入）",
       "folder_name": "文件夾名稱",
@@ -791,6 +797,8 @@
       "clear_all_desc": "將會同時刪除瀏覽進度!",
       "clear_one": "您要清除這條瀏覽記錄嗎? ",
       "clear_one_desc": "將會同時刪除瀏覽進度!",
+      "clear_selected": "您要清除選中的瀏覽記錄嗎? ",
+      "clear_selected_desc": "將會同時刪除瀏覽進度!",
       "categories": "分類"
     },
     "web_server": {

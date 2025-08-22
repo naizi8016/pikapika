@@ -64,6 +64,7 @@ import '../basic/config/DownloadCachePath.dart';
 import '../basic/config/ExportPath.dart';
 import '../basic/config/ExportRename.dart';
 import '../basic/config/HiddenFdIcon.dart';
+import '../basic/config/HiddenViewed.dart';
 import '../basic/config/HiddenWords.dart';
 import '../basic/config/IconLoading.dart';
 import '../basic/config/IgnoreUpgradeConfirm.dart';
@@ -167,6 +168,7 @@ class _InitScreenState extends State<InitScreen> {
     await initCopyFullName();
     await initCategoriesSort();
     await initLocalHistorySync();
+    await initHiddenViewed();
     await initHiddenSubIcon();
     await initHiddenSearchPersion();
     await initLockTimeOut();

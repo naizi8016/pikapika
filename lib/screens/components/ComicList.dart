@@ -12,6 +12,7 @@ import 'package:pikapika/basic/config/ListLayout.dart';
 import 'package:pikapika/basic/config/ShadowCategoriesMode.dart';
 import 'package:pikapika/screens/components/CommonData.dart';
 
+import '../../basic/config/HiddenViewed.dart';
 import 'ComicInfoCard.dart';
 import 'Images.dart';
 import 'LinkToComicInfo.dart';
@@ -130,6 +131,33 @@ class _ComicListState extends State<ComicList> {
       physics: const AlwaysScrollableScrollPhysics(),
       children: [
         ...widget.comicList.map((e) {
+          bool viewed = viewedList.contains(e.id);
+          if (hiddenViewed && viewed) {
+            return InkWell(
+              onTap: () {},
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: Theme.of(context).dividerColor,
+                    ),
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    tr('components.comic_info_card.viewed'),
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: (Theme.of(context).textTheme.bodyText1?.color ??
+                              Colors.black)
+                          .withOpacity(.3),
+                    ),
+                  ),
+                ),
+              ),
+            );
+          }
           late bool shadow;
           X:
           switch (currentShadowCategoriesMode()) {
@@ -316,7 +344,34 @@ class _ComicListState extends State<ComicList> {
           }
         }
       }
-      if (shadow) {
+
+      bool viewed = viewedList.contains(e.id);
+      if (hiddenViewed && viewed) {
+        tmp.add(
+          Container(
+            padding: EdgeInsets.all(gap),
+            child: Container(
+              width: width,
+              height: height,
+              color:
+                  (Theme.of(context).textTheme.bodyText1?.color ?? Colors.black)
+                      .withOpacity(.05),
+              child: Center(
+                child: Text(
+                  tr('components.comic_info_card.viewed'),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: (Theme.of(context).textTheme.bodyText1?.color ??
+                            Colors.black)
+                        .withOpacity(.5),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      } else if (shadow) {
         tmp.add(
           Container(
             padding: EdgeInsets.all(gap),
@@ -522,7 +577,33 @@ class _ComicListState extends State<ComicList> {
           }
         }
       }
-      if (shadow) {
+      bool viewed = viewedList.contains(e.id);
+      if (hiddenViewed && viewed) {
+        tmp.add(
+          Container(
+            padding: EdgeInsets.all(gap),
+            child: Container(
+              width: width,
+              height: height,
+              color:
+                  (Theme.of(context).textTheme.bodyText1?.color ?? Colors.black)
+                      .withOpacity(.05),
+              child: Center(
+                child: Text(
+                  tr('components.comic_info_card.viewed'),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: shadowFontSize,
+                    color: (Theme.of(context).textTheme.bodyText1?.color ??
+                            Colors.black)
+                        .withOpacity(.5),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      } else if (shadow) {
         tmp.add(
           Container(
             padding: EdgeInsets.all(gap),

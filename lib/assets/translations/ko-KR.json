@@ -229,6 +229,9 @@
     "hidden_search_persion": {
       "title": "작가별 검색 기능 숨기기"
     },
+    "hidden_viewed": {
+      "title": "읽은 만화 숨기기"
+    },
     "hidden_sub_icon": {
       "title": "구독 기능 숨기기"
     },
@@ -407,6 +410,8 @@
       "password_hint": "WebDav 비밀번호를 입력하세요",
       "auto_sync_history_to_webdav": "WebDav에 기록 자동 동기화",
       "sync_history_to_webdav": "기록을 WebDAV에 동기화",
+      "upload_history_to_webdav": "WebDAV의 기록 덮어쓰기",
+      "upload_history_to_webdav_desc": "여러 장치가 있는 경우 자동 동기화 기능에 유의하세요",
       "sync_success": "동기화 성공",
       "sync_failed": "동기화 실패"
     }
@@ -592,6 +597,7 @@
       "paused": "일시 중지됨",
       "move_download": "다운로드 이동",
       "select_download_to_move": "이동할 다운로드를 선택하세요",
+      "select_download_to_delete": "삭제할 다운로드를 선택하세요",
       "input_name": "==> 이름 입력 <==",
       "empty_folder_will_be_deleted": "(빈 폴더는 자동으로 삭제되며, 다음에 수동으로 입력해야 합니다)",
       "folder_name": "폴더 이름",
@@ -791,6 +797,8 @@
       "clear_all_desc": "읽기 진행 상황도 삭제됩니다!",
       "clear_one": "이 조회 기록을 지우시겠습니까?",
       "clear_one_desc": "읽기 진행 상황도 삭제됩니다!",
+      "clear_selected": "선택한 조회 기록을 지우시겠습니까?",
+      "clear_selected_desc": "읽기 진행 상황도 삭제됩니다!",
       "categories": "카테고리"
     },
     "web_server": {

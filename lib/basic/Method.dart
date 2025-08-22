@@ -1032,12 +1032,14 @@ class Method {
     String username,
     String password,
     String file,
+    String direction,
   ) {
     return _flatInvoke("mergeHistoriesFromWebDav", {
       "root": root,
       "username": username,
       "password": password,
       "file": file,
+      "direction": direction,
     });
   }
 

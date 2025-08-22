@@ -229,6 +229,9 @@
     "hidden_search_persion": {
       "title": "作者別検索機能を非表示"
     },
+    "hidden_viewed": {
+      "title": "読んだ漫画を非表示"
+    },
     "hidden_sub_icon": {
       "title": "購読機能を非表示"
     },
@@ -407,6 +410,8 @@
       "password_hint": "WebDav パスワードを入力してください",
       "auto_sync_history_to_webdav": "履歴を WebDav に自動同期",
       "sync_history_to_webdav": "履歴を WebDAV に同期",
+      "upload_history_to_webdav": "WebDAV の履歴を上書き",
+      "upload_history_to_webdav_desc": "複数のデバイスがある場合、自動同期機能に注意してください",
       "sync_success": "同期成功",
       "sync_failed": "同期失敗"
     }
@@ -592,6 +597,7 @@
       "paused": "一時停止",
       "move_download": "ダウンロードを移動",
       "select_download_to_move": "移動するダウンロードを選択してください",
+      "select_download_to_delete": "削除するダウンロードを選択してください",
       "input_name": "==> 名前を入力 <==",
       "empty_folder_will_be_deleted": "(空のフォルダは自動的に削除されます、次回は手動で入力する必要があります)",
       "folder_name": "フォルダ名",
@@ -791,6 +797,8 @@
       "clear_all_desc": "読書の進捗も削除されます！",
       "clear_one": "この閲覧履歴をクリアしますか？",
       "clear_one_desc": "読書の進捗も削除されます！",
+      "clear_selected": "選択した閲覧履歴をクリアしますか？",
+      "clear_selected_desc": "読書の進捗も削除されます！",
       "categories": "カテゴリ"
     },
     "web_server": {

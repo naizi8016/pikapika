@@ -229,6 +229,9 @@
     "hidden_search_persion": {
       "title": "Hide search by author"
     },
+    "hidden_viewed": {
+      "title": "Hide viewed comics"
+    },
     "hidden_sub_icon": {
       "title": "Hide subscription"
     },
@@ -407,6 +410,8 @@
       "password_hint": "Please enter the WebDav password",
       "auto_sync_history_to_webdav": "Auto sync history to WebDav",
       "sync_history_to_webdav": "Sync history to WebDAV",
+      "upload_history_to_webdav": "Upload history to WebDAV",
+      "upload_history_to_webdav_desc": "If there are multiple devices, please note the automatic synchronization function",
       "sync_success": "Sync success",
       "sync_failed": "Sync failed"
     }
@@ -592,6 +597,7 @@
       "paused": "Paused",
       "move_download": "Move download",
       "select_download_to_move": "Please select the download to move",
+      "select_download_to_delete": "Please select the download to delete",
       "input_name": "==> Input name <==",
       "empty_folder_will_be_deleted": "(Empty folder will be automatically deleted, next time you need to manually input)",
       "folder_name": "Folder name",
@@ -791,6 +797,8 @@
       "clear_all_desc": "Reading progress will also be deleted!",
       "clear_one": "Do you want to clear this view history?",
       "clear_one_desc": "Reading progress will also be deleted!",
+      "clear_selected": "Do you want to clear selected view history?",
+      "clear_selected_desc": "Reading progress will also be deleted!",
       "categories": "Categories"
     },
     "web_server": {

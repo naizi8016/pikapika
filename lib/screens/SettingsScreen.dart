@@ -49,6 +49,7 @@ import '../basic/config/DownloadCachePath.dart';
 import '../basic/config/EBookScrolling.dart';
 import '../basic/config/HiddenFdIcon.dart';
 import '../basic/config/HiddenSubIcon.dart';
+import '../basic/config/HiddenViewed.dart';
 import '../basic/config/HiddenWords.dart';
 import '../basic/config/IgnoreInfoHistory.dart';
 import '../basic/config/ImageFilter.dart';
@@ -142,6 +143,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 shadowCategoriesModeSetting(),
                 shadowCategoriesSetting(),
                 hiddenWordsSetting(),
+                hiddenViewedSetting(),
               ],
             ),
             ExpansionTile(

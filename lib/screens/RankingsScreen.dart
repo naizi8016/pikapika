@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:pikapika/i18.dart';
 import 'package:pikapika/basic/Entities.dart';
 import 'package:pikapika/basic/Method.dart';
-import 'package:pikapika/basic/config/ListLayout.dart';
-import 'package:pikapika/basic/config/ShadowCategories.dart';
 import 'package:pikapika/screens/components/Avatar.dart';
 import 'package:pikapika/screens/components/ContentBuilder.dart';
 
