@@ -17,33 +17,19 @@ bool currentExportRename() {
   return _exportRename;
 }
 
-Future<void> _chooseExportRename(BuildContext context) async {
-  String? result =
-      await chooseListDialog<String>(context, tr("settings.export_rename.title"), ["是", "否"]);
-  if (result != null) {
-    var target = result == "是";
-    await method.saveProperty(_propertyName, "$target");
-    _exportRename = target;
-  }
-}
-
 Widget exportRenameSetting() {
   return StatefulBuilder(
     builder: (BuildContext context, void Function(void Function()) setState) {
-      return ListTile(
-        title: Text(
-          tr("settings.export_rename.title") + (!isPro ? "(${tr("app.pro")})" : ""),
-          style: TextStyle(
-            color: !isPro ? Colors.grey : null,
-          ),
-        ),
-        subtitle: Text(_exportRename ? tr("settings.yes") : tr("settings.no")),
-        onTap: () async {
+      return SwitchListTile(
+        title: Text(tr("settings.export_rename.title")),
+        value: _exportRename,
+        onChanged: (value) async {
           if (!isPro) {
             defaultToast(context, tr("app.pro_required"));
             return;
-          }
-          await _chooseExportRename(context);
+          } 
+          await method.saveProperty(_propertyName, "$value");
+          _exportRename = value;
           setState(() {});
         },
       );
