@@ -31,6 +31,32 @@
 .pub/
 /build/
 
+# Flutter/Dart generated files
+.dart_tool/package_config.json
+.dart_tool/package_graph.json
+.dart_tool/version
+.flutter-plugins-dependencies
+
+# Android generated files
+android/.gradle/
+android/local.properties
+android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java
+
+# iOS generated files
+ios/Flutter/Generated.xcconfig
+ios/Flutter/ephemeral/
+ios/Runner/GeneratedPluginRegistrant.h
+ios/Runner/GeneratedPluginRegistrant.m
+
+# macOS generated files
+macos/Flutter/ephemeral/
+
+# Linux generated files
+linux/flutter/ephemeral/
+
+# Windows generated files
+windows/flutter/ephemeral/
+
 # Web related
 lib/generated_plugin_registrant.dart
 
